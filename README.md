@@ -16,7 +16,7 @@ pip3 install -r requirements.txt
 ### Start the API server:
 
 ```python
-python3 -m uvicorn api.main:app --reload
+python3 -m uvicorn api.main:app --reload --port 8080
 ```
 
 ---
