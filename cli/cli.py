@@ -11,8 +11,6 @@ def cmd_add():
     severity = input("Severity [Low/Medium/High/Critical]: ").strip().title() or "Low"
     asset = input("Asset (IP/Hostname): ").strip()
     description = input("Description: ").strip()
-    steps = input("Steps to Reproduce: ").strip()
-    mitigation = input("Mitigation: ").strip()
     status = input("Status [Open/Fixed/Accepted/False Positive]: ").strip().title() or "Open"
 
     payload = {
@@ -20,8 +18,6 @@ def cmd_add():
         "severity": severity,
         "asset": asset,
         "description": description,
-        "steps": steps,
-        "mitigation": mitigation,
         "status": status
     }
     r = requests.post(f"{API}/vulnerabilities", json=payload)
@@ -68,8 +64,6 @@ def cmd_update(vuln_id):
         "severity": i("Severity", current.get("severity")),
         "asset": i("Asset", current.get("asset")),
         "description": i("Description", current.get("description")),
-        "steps": i("Steps to Reproduce", current.get("steps")),
-        "mitigation": i("Mitigation", current.get("mitigation")),
         "status": i("Status", current.get("status")),
     }
     r2 = requests.put(f"{API}/vulnerabilities/{vuln_id}", json=payload)
@@ -105,7 +99,6 @@ def main():
     upd.add_argument("id", type=int)
     dlt = sub.add_parser("delete")
     dlt.add_argument("id", type=int)
-    sub.add_parser("export")
 
     args = parser.parse_args()
     if args.cmd == "add":
@@ -118,8 +111,6 @@ def main():
         cmd_update(args.id)
     elif args.cmd == "delete":
         cmd_delete(args.id)
-    elif args.cmd == "export":
-        cmd_export()
     else:
         parser.print_help()
 
