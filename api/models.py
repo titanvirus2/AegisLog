@@ -1,4 +1,4 @@
-from pydantic import BaseModel, constr, validator
+from pydantic import BaseModel, constr
 
 SEVERITY_CHOICES = {"Low", "Medium", "High", "Critical"}
 STATUS_CHOICES = {"Open", "Fixed", "Accepted", "False Positive"}
