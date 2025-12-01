@@ -22,8 +22,7 @@ def cmd_add():
     }
     r = requests.post(f"{API}/vulnerabilities", json=payload)
     if r.status_code in (200,201):
-        print("Created:")
-        r.json()
+        print("Created New Record")
     else:
         print("Error:", r.status_code, r.text)
 
@@ -44,7 +43,7 @@ def cmd_list():
 def cmd_get(vuln_id):
     r = requests.get(f"{API}/vulnerabilities/{vuln_id}")
     if r.status_code == 200:
-        r.json()
+        print(json.dumps((r.json()),indent=2))
     else:
         print("Error:", r.status_code, r.text)
 
@@ -68,7 +67,7 @@ def cmd_update(vuln_id):
     }
     r2 = requests.put(f"{API}/vulnerabilities/{vuln_id}", json=payload)
     if r2.status_code == 200:
-        print("Updated:")
+        print(f"Updated Record {vuln_id}")
         r2.json()
     else:
         print("Error:", r2.status_code, r2.text)
@@ -77,13 +76,6 @@ def cmd_delete(vuln_id):
     r = requests.delete(f"{API}/vulnerabilities/{vuln_id}")
     if r.status_code == 200:
         print("Deleted:", r.json())
-    else:
-        print("Error:", r.status_code, r.text)
-
-def cmd_export():
-    r = requests.post(f"{API}/export")
-    if r.status_code == 200:
-        pretty_print_json(r.json())
     else:
         print("Error:", r.status_code, r.text)
 
