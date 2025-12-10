@@ -8,7 +8,7 @@ python3 -m venv venv
 source venv/bin/activate # or venv\Scripts\activate on Windows
 ```
 ```python
-pip3 install -r requirements.txt
+pip3 install -r requirements.txt # or pip install -r requirements.txt on Windows
 ```
 
 ---
@@ -16,7 +16,7 @@ pip3 install -r requirements.txt
 ### Start the API server:
 
 ```python
-python3 -m uvicorn api.main:app --reload --port 8080
+python3 -m uvicorn api.main:app --reload --port 8080 # or python -m uvicorn api.main:app --reload --port 8080 on Windows
 ```
 
 ---
@@ -28,17 +28,5 @@ source venv/bin/activate # or venv\Scripts\activate on Windows
 ```
 
 ```python
-python cli/vulncli.py add
-```
-```python
-python cli/vulncli.py list
-```
-```python
-python cli/vulncli.py get <ID>
-```
-```python
-python cli/vulncli.py update <ID>
-```
-```python
-python cli/vulncli.py delete <ID>
+python3 cli/cli.py  # or python cli/cli.py on Windows
 ```
